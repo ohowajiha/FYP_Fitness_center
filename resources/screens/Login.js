@@ -26,7 +26,7 @@ const Login = props => {
                 <TextInput style={styles.inputField} placeholder={isEnglish ? Strings.passwordPlaceholder : UrduStrings.passwordPlaceholder} />
                 
                 <TouchableOpacity style={styles.button1} >
-                    <Text style={styles.btnText1}> {isEnglish ? Strings.loginText : UrduStrings.loginText} </Text>
+                    <Text style={styles.btnText1}> {isEnglish ? Strings.loginButtonText : UrduStrings.loginButtonText} </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.button2} >
@@ -89,7 +89,8 @@ const styles = StyleSheet.create({
     },
     button1: {
         width: 300,
-        marginTop: 20,
+        height: 38,
+        marginTop: 30,
         backgroundColor: Colors.primary,
         padding: 6,
         borderRadius: 5,

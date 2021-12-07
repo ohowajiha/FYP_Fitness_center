@@ -9,7 +9,7 @@ export default{
     emailPlaceholder: "Email",
     passwordPlaceholder: "Password",
     // Buttons
-    loginText: "Log In",
+    loginButtonText: "Log In",
     forgotPasswordText: "Forgot Password?",
     // spliter
     spliterText: "OR",

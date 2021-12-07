@@ -9,7 +9,7 @@ export default{
     emailPlaceholder: "ای میل",
     passwordPlaceholder: "پاس ورڈ",
     // Buttons
-    loginText: "لاگ ان",
+    loginButtonText: "لاگ ان",
     forgotPasswordText: "پاسورڈ بھول گئے؟",
     // spliter
     spliterText: "یا",
