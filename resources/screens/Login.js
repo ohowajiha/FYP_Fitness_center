@@ -1,31 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, Button, TextInput, TouchableOpacity } from 'react-native';
 
 import LoginScreenHeader from '../components/LoginScreenHeader';
 import Colors from '../colors/Colors';
 import Strings from '../strings/Strings';
+import UrduStrings from '../strings/UrduStrings';
 
 const Login = props => {
+    const [isEnglish, setIsEnglish]=useState(true);
     return (
         <View style={styles.container}>
             <LoginScreenHeader />
-            <View style={styles.languageSelector}><Text style={{ fontSize: 14 }}>English,  change</Text></View>
+            <View style={styles.languageSelector}>
+            <TouchableOpacity style={styles.languageButton} onPress={()=>setIsEnglish(true)} >
+                    <Text style={styles.btnLnText}> {isEnglish ? Strings.englishLanguage : UrduStrings.englishLanguage} </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.languageButton} onPress={()=>setIsEnglish(false)} >
+                <Text style={styles.btnLnText}> {isEnglish ? Strings.urduLanguage : UrduStrings.urduLanguage} </Text>
+            </TouchableOpacity>
+            </View>
 
             <View style={styles.fieldsContainer}>
-                <TextInput style={styles.inputField} placeholder={Strings.emailPlaceholder} />
-                <TextInput style={styles.inputField} placeholder={Strings.passwordPlaceholder} />
+                <TextInput style={styles.inputField} placeholder={isEnglish ? Strings.emailPlaceholder : UrduStrings.emailPlaceholder} />
+                <TextInput style={styles.inputField} placeholder={isEnglish ? Strings.passwordPlaceholder : UrduStrings.passwordPlaceholder} />
                 
                 <TouchableOpacity style={styles.button1} >
-                    <Text style={styles.btnText1}> {Strings.loginText} </Text>
+                    <Text style={styles.btnText1}> {isEnglish ? Strings.loginText : UrduStrings.loginText} </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.button2} >
-                    <Text style={styles.btnText2}> {Strings.forgotPasswordText} </Text>
+                    <Text style={styles.btnText2}> {isEnglish ? Strings.forgotPasswordText : UrduStrings.forgotPasswordText} </Text>
                 </TouchableOpacity>
             </View>
 
             <Text style={styles.separator}>
-            ───────────── {Strings.spliterText} ─────────────
+            ───────────── {isEnglish ? Strings.spliterText : UrduStrings.spliterText} ─────────────
             </Text>
 
             {/* Also we can use that code for a separator or bar
@@ -39,7 +49,7 @@ const Login = props => {
 
             <View style={styles.signupButtons}>
                 <View style={{width:250}}>
-                    <Button title={Strings.signupText}/>
+                    <Button onPress={props.shiftSignupScreen} title={isEnglish ? Strings.signupText : UrduStrings.signupText}/>
                 </View>
             </View>
         </View>
@@ -53,6 +63,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     languageSelector: {
+        flexDirection:'row',
         justifyContent: 'center',
         alignItems: 'center',
         marginTop:5
@@ -62,6 +73,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 30
+    },
+    languageButton:{
+        marginHorizontal:3,
+    },
+    btnLnText:{
+        fontSize:14
     },
     inputField: {
         borderBottomColor: Colors.primary,
