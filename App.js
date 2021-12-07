@@ -1,12 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
 
 import Login from './resources/screens/Login';
+import Signup from './resources/screens/Signup';
 
 const App = () => {
+  const [isSignup, setIsSignup]=useState(false);
+  let content;
+
+  if(isSignup)
+    content=<Signup shiftLoginScreen={()=>setIsSignup(false)} />;
+  else
+    content=<Login shiftSignupScreen={()=>setIsSignup(true)}/>;
+
   return(
     <View style={styles.container}>
-      <Login />
+      {content}
     </View>
   )
 };

@@ -1,6 +1,10 @@
 export default{
     // Login Activity
 
+    //languageButtons
+    englishLanguage: "English",
+    urduLanguage: "Urdu",
+
     // TextInputs
     emailPlaceholder: "Email",
     passwordPlaceholder: "Password",
