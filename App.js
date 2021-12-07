@@ -5,13 +5,20 @@ import Login from './resources/screens/Login';
 import Signup from './resources/screens/Signup';
 
 const App = () => {
+  const [isEnglish, setIsEnglish]=useState(true);
   const [isSignup, setIsSignup]=useState(false);
   let content;
 
+  const signupPressed=(setEnglish)=>{
+    setIsSignup(true);
+    console.log(isEnglish);
+    setIsEnglish(setEnglish);
+  }
+
   if(isSignup)
-    content=<Signup shiftLoginScreen={()=>setIsSignup(false)} />;
+    content=<Signup setEnglish={isEnglish} shiftLoginScreen={()=>setIsSignup(false)} />;
   else
-    content=<Login shiftSignupScreen={()=>setIsSignup(true)}/>;
+    content=<Login shiftSignupScreen={signupPressed}/>;
 
   return(
     <View style={styles.container}>

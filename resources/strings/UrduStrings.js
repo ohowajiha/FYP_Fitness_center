@@ -14,5 +14,13 @@ export default{
     // spliter
     spliterText: "یا",
     // signup Button
-    signupText: "نیا اکاؤنٹ بنائیں"
+    signupText: "نیا اکاؤنٹ بنائیں",
+
+    //signup Avtivity
+    signupLabel:"اکاؤنٹ بنائیں",
+    signupQuote: "صحت ایک دولت ہے۔",
+    welcomeText: "میں خوش آمدید \"Fitness Center\"",
+    flowText: "ہم چند آسان مراحل میں نیا اکاؤنٹ بنانے میں آپ کی مدد کریں گے۔",
+    nextText: "اگلا",
+    loginText: "پہلے سے اکاؤنٹ موجود ہے؟"
 };

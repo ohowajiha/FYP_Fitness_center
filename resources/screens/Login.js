@@ -49,7 +49,7 @@ const Login = props => {
 
             <View style={styles.signupButtons}>
                 <View style={{width:250}}>
-                    <Button onPress={props.shiftSignupScreen} title={isEnglish ? Strings.signupText : UrduStrings.signupText}/>
+                    <Button onPress={()=>props.shiftSignupScreen(isEnglish)} title={isEnglish ? Strings.signupText : UrduStrings.signupText}/>
                 </View>
             </View>
         </View>
