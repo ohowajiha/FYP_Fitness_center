@@ -51,6 +51,7 @@ const styles= StyleSheet.create({
     },
     button1: {
         width: 300,
+        height: 38,
         marginTop: 40,
         backgroundColor: Colors.primary,
         padding: 6,
@@ -70,7 +71,7 @@ const styles= StyleSheet.create({
     },
     btnText2: {
         color: Colors.primary,
-        fontSize: 14,
+        fontSize: 15,
         justifyContent: "center",
         textAlign: "center",
     }

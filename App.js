@@ -11,7 +11,6 @@ const App = () => {
 
   const signupPressed=(setEnglish)=>{
     setIsSignup(true);
-    console.log(isEnglish);
     setIsEnglish(setEnglish);
   }
 

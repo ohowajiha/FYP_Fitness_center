@@ -33,13 +33,12 @@ const styles= StyleSheet.create({
         padding: 10,
         justifyContent:'flex-start',
         alignItems: 'center',
-        borderBottomColor: Colors.secondLogoColor,
+        borderBottomColor: Colors.primary,
         borderBottomWidth:1
     },
     btnBack: {
         width:35,
-        height:25,
-        paddingHorizontal: 5
+        height:25
     },
     label:{
         fontSize:18,
