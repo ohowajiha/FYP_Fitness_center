@@ -19,8 +19,19 @@ export default{
 
     //signup Avtivity
     signupLabel:"Create Account",
-    signupQuote: "Health is a wealth",
-    flowText: "We will help you in creating new account in a few easy steps.",
+    signupQuote: "Welcome to \"Fitness Center\"",
+    flowText: "We will guide you step by step, throughout the account creating process.",
     nextText: "Next",
-    loginText: "Already have an account?"
+    loginText: "Already have an account?",
+
+
+    nameLabelText: "Name",
+    nameHeadingText:"What's you name?",
+    nameCaptionText:"Enter your name",
+    firstNameLabel: "First Name",
+    lastNameLabel: "Last Name",
+
+    dobLabelText: "Birthday",
+    dobHeadingText: "What's your birthday",
+    dobCaptionText: "Click on Calendar and choose your date of birth",
 };

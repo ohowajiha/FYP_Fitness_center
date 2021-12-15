@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Button, TextInput, TouchableOpacity } from 'react-native';
 
-import LoginScreenHeader from '../components/LoginScreenHeader';
+import LoginScreenHeader from '../components/LoginComponents/LoginScreenHeader';
 import Colors from '../colors/Colors';
 import Strings from '../strings/Strings';
 import UrduStrings from '../strings/UrduStrings';

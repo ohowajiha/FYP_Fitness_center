@@ -1,14 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import Colors from '../colors/Colors';
-import Strings from '../strings/Strings';
-import UrduStrings from '../strings/UrduStrings';
+import Colors from '../../colors/Colors';
 
 const SignupScreenHeader = props =>{
     return(
         <View style={[props.setEnglish ? styles.signupHeader: styles.signupHeader2]}>
-            <TouchableOpacity onPress={props.shiftLoginScreen}>
-                    <Image source={props.setEnglish ? require('../images/leftIcon.png'): require('../images/rightIcon.png')} style={styles.btnBack}/>
+            <TouchableOpacity onPress={props.shiftBackScreen}>
+                    <Image source={props.setEnglish ? require('../../images/leftIcon.png'): require('../../images/rightIcon.png')} style={styles.btnBack}/>
             </TouchableOpacity>
             <Text style={styles.label}>{ props.title }</Text>
         </View>
