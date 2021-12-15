@@ -17,10 +17,21 @@ export default{
     signupText: "نیا اکاؤنٹ بنائیں",
 
     //signup Avtivity
-    signupLabel:"اکاؤنٹ بنائیں",
-    signupQuote: "صحت ایک دولت ہے۔",
-    welcomeText: "میں خوش آمدید \"Fitness Center\"",
-    flowText: "ہم چند آسان مراحل میں نیا اکاؤنٹ بنانے میں آپ کی مدد کریں گے۔",
+    signupLabel:"اکاؤنٹ بنائیں",    
+    signupQuote: "\"Fitness Center\"\nمیں خوش آمدید",
+    flowText: "اکاؤنٹ بنانے کے پورے عمل میں ہم قدم بہ قدم آپ کی رہنمائی کریں گے۔",
     nextText: "اگلا",
-    loginText: "پہلے سے اکاؤنٹ موجود ہے؟"
+    loginText: "پہلے سے اکاؤنٹ موجود ہے؟",
+
+
+    nameLabelText: "نام",
+    nameHeadingText:"آپ کا نام کیا ہے؟",
+    nameCaptionText:"اپنا اصلی نام درج کریں۔",
+    firstNameLabel: "پہلا نام",
+    lastNameLabel: "آخری نام",
+
+    dobLabelText: "سالگرہ",
+    dobHeadingText: "آپ کی سالگرہ کیا ہے؟",
+    dobCaptionText: "کیلنڈر پر کلک کریں اور اپنی تاریخ پیدائش کا انتخاب کریں۔",
 };
+

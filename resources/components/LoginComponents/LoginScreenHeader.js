@@ -1,6 +1,6 @@
 import React from 'react';
 import {Image, View, StyleSheet, Keyboard} from 'react-native';
-import Colors from '../colors/Colors';
+import Colors from '../../colors/Colors';
 
 const LoginScreenHeader = props =>{
 
@@ -8,7 +8,7 @@ const LoginScreenHeader = props =>{
     
     return(
         <View style={styles.loginHeader}>
-            <Image style={styles.headerImage} source={require('../images/loginHeader.png')}/>
+            <Image style={styles.headerImage} source={require('../../images/loginHeader.png')}/>
         </View>
     );
 };
