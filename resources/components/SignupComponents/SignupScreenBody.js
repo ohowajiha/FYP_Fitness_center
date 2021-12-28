@@ -1,22 +1,34 @@
+/* 
+    This component have input fields and buttons requested by different signup pages    
+*/
+
+
 import React, {useState} from 'react';
 import {View, Text, TextInput, Image, StyleSheet, TouchableOpacity, Platform} from 'react-native';
+
+// for date inputs in react native
 import DateTimePicker from '@react-native-community/datetimepicker';
 
+// colors and strings imprt
 import Colors from '../../colors/Colors';
 import Strings from '../../strings/Strings';
 import UrduStrings from '../../strings/UrduStrings';
 
+//main
 const SignupScreenBody = props =>{
     // for date time picker
+///////////////////////////////////////////////////////////////////////////////////////
+    // states and functions for date and age
+//////////////////////////////////////////////////////////////////////////////////////
     const [date, setDate] = useState(new Date());
     const [show, setShow] = useState(false);
-    const [firstClicked, setFirstClicked] = useState(false);
+    const [firstClicked, setFirstClicked] = useState(false); // to display nothing in date and age textView firstTime
     let age=0;
     const onChange = (event, selectedDate) => {
-        const currentDate= selectedDate || date;
-        setDate(currentDate);
+        const newSelectedDate= selectedDate || date;
+        setDate(newSelectedDate);
         if(Platform.OS==='android'){
-            setShow(false);
+            setShow(false); //hide the calendar view
         }
         if(!firstClicked){
             setFirstClicked(true);
@@ -40,7 +52,11 @@ const SignupScreenBody = props =>{
     const showDate=()=>{
         return date.getDate() + " / " + monthNames[date.getMonth()] + " / "+ date.getFullYear();
     }
-//
+
+///////////////////////////////////////////////////////////////////////////////////////
+    //  1.
+    //  Image for create account activity
+//////////////////////////////////////////////////////////////////////////////////////
     let ImageContainer=<></>;
     if(props.helloImage == 1){
         ImageContainer =
@@ -49,39 +65,37 @@ const SignupScreenBody = props =>{
         </View>;
     }
 
-    let SecondButton=<></>;
-    if(props.helloSecondButton==1){
-        SecondButton =
-        <View style={{ alignItems: 'center' }}>
-            <TouchableOpacity style={styles.button2} onPress={props.shiftBackScreen}>
-                <Text style={styles.btnText2}>{props.setEnglish ? Strings.loginText : UrduStrings.loginText}</Text>
-            </TouchableOpacity>
-        </View>;
-    }
-    
+///////////////////////////////////////////////////////////////////////////////////////
+    //  2.
+    //  Input fiels for activity
+//////////////////////////////////////////////////////////////////////////////////////
     let InputFields=<></>;
-    if(props.helloInputFields==1){
+    if(props.helloInputFields==1){    //////  a. name inputs
         InputFields =
         <View style={{ marginTop: 20, flexDirection:props.setEnglish ? 'row': 'row-reverse', alignItems: 'center', justifyContent:'space-between' }}>
             <TextInput placeholder={props.setEnglish?Strings.firstNameLabel:UrduStrings.firstNameLabel} style={styles.inputField}/>
             <TextInput placeholder={props.setEnglish?Strings.lastNameLabel:UrduStrings.lastNameLabel} style={styles.inputField}/>
         </View>;
     }
-    else if(props.helloInputFields==2){
+    else if(props.helloInputFields==2){     ///////////    b. date input calendar type
         InputFields =
         <View style={{ marginTop: 20 }}>
+            {/*display calendar icon*/}
             <TouchableOpacity style={{width:60, height:60, alignSelf:'center'}}   onPress={()=>setShow(true)}>
                 <Image style={{width:60, height:60}} source={require('../../images/calendarIcon.png')}/>
             </TouchableOpacity>
 
+            {/*display date entered throught calendar*/}
             <Text style={[styles.inputField, {width:null, maxWidth:null,marginTop:20, paddingBottom: 5,textAlign:'center'}]}>
                     {firstClicked?showDate():props.setEnglish?Strings.dobLabelText:UrduStrings.dobLabelText}
             </Text>
 
+            {/* calculating age with the help of current date and entered date*/}
             <Text style={[{marginTop:5, fontWeight:'bold', textAlign:'center'}]}>
                     {firstClicked?changeAge()+" Years old":""}
             </Text>
-
+            
+            {/* show and hide calendar input */}
             {show && (
                 <DateTimePicker
                     testID="dateTimePicker"
@@ -93,17 +107,36 @@ const SignupScreenBody = props =>{
         </View>;
     }
 
+///////////////////////////////////////////////////////////////////////////////////////
+    //  3.
+    //  second button at bottom in some activities
+//////////////////////////////////////////////////////////////////////////////////////
+    let SecondButton=<></>;
+    if(props.helloSecondButton==1){
+        SecondButton =
+        <View style={{ alignItems: 'center' }}>
+            <TouchableOpacity style={styles.button2} onPress={props.shiftBackScreen}>
+                <Text style={styles.btnText2}>{props.setEnglish ? Strings.loginText : UrduStrings.loginText}</Text>
+            </TouchableOpacity>
+        </View>;
+    }
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////
     return(
         <>
         <View style={styles.container}>
             {ImageContainer}
 
-            {/* {TextHeading} */}
+            {/* /////////////////////////////////////////////
+                        Heading for activity
+                ///////////////////////////////////////////// */}
             <View style={styles.itemsContainer} >
                 <Text style={styles.headingText}>{props.headingText}</Text>
             </View>
             
-            {/* {TextCaption}    */}
+            {/* /////////////////////////////////////////////
+                        caption for Heading for activity
+                ///////////////////////////////////////////// */}
             <Text style={{ marginTop: 10, textAlign: 'center' }}>
                 {props.captionText}
             </Text>
