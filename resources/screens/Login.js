@@ -7,20 +7,31 @@ import Strings from '../strings/Strings';
 import UrduStrings from '../strings/UrduStrings';
 
 const Login = props => {
-    const [isEnglish, setIsEnglish]=useState(true);
+    const [isEnglish, setIsEnglish]=useState(props.setEnglish);
     return (
         <View style={styles.container}>
             <LoginScreenHeader />
+
+            {/* 
+            ////////////////////////////////////////////////////////////////////
+                    Language buttons: English, Urdu
+            ////////////////////////////////////////////////////////////////////
+            */}
             <View style={styles.languageSelector}>
-            <TouchableOpacity style={styles.languageButton} onPress={()=>setIsEnglish(true)} >
-                    <Text style={styles.btnLnText}> {isEnglish ? Strings.englishLanguage : UrduStrings.englishLanguage} </Text>
+            <TouchableOpacity style={styles.languageButton} disabled={isEnglish} onPress={()=>setIsEnglish(true)} >
+                    <Text style={[styles.btnLnText, isEnglish?{fontWeight:'bold'}:{}]}> {isEnglish ? Strings.englishLanguage : UrduStrings.englishLanguage} </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.languageButton} onPress={()=>setIsEnglish(false)} >
-                <Text style={styles.btnLnText}> {isEnglish ? Strings.urduLanguage : UrduStrings.urduLanguage} </Text>
+            <TouchableOpacity style={styles.languageButton} disabled={!isEnglish} onPress={()=>setIsEnglish(false)} >
+                <Text style={[styles.btnLnText, isEnglish?{}:{fontWeight:'bold'}]}> {isEnglish ? Strings.urduLanguage : UrduStrings.urduLanguage} </Text>
             </TouchableOpacity>
             </View>
 
+            {/* 
+            ////////////////////////////////////////////////////////////////////
+                    Email, password, login button, forgor password button
+            ////////////////////////////////////////////////////////////////////
+            */}
             <View style={styles.fieldsContainer}>
                 <TextInput style={styles.inputField} placeholder={isEnglish ? Strings.emailPlaceholder : UrduStrings.emailPlaceholder} />
                 <TextInput style={styles.inputField} placeholder={isEnglish ? Strings.passwordPlaceholder : UrduStrings.passwordPlaceholder} />
@@ -34,19 +45,20 @@ const Login = props => {
                 </TouchableOpacity>
             </View>
 
+            {/* 
+            ////////////////////////////////////////////////////////////////////
+                    Separator bar
+            ////////////////////////////////////////////////////////////////////
+            */}
             <Text style={styles.separator}>
             ───────────── {isEnglish ? Strings.spliterText : UrduStrings.spliterText} ─────────────
             </Text>
 
-            {/* Also we can use that code for a separator or bar
-            <View style={{ paddingHorizontal: '10%', marginVertical: 10, flexDirection: 'row', alignItems: 'center' }}>
-                <View style={{ flex: 1, height: 1, backgroundColor: 'black' }} />
-                <View>
-                    <Text style={{ width: 50, textAlign: 'center' }}>OR</Text>
-                </View>
-                <View style={{ flex: 1, height: 1, backgroundColor: 'black' }} />
-            </View> */}
-
+            {/* 
+            ////////////////////////////////////////////////////////////////////
+                    Signup button
+            ////////////////////////////////////////////////////////////////////
+            */}
             <View style={styles.signupButtons}>
                 <View style={{width:250}}>
                     <Button onPress={()=>props.shiftSignupScreen(isEnglish)} title={isEnglish ? Strings.signupText : UrduStrings.signupText}/>

@@ -1,10 +1,17 @@
 import React, {useState} from 'react';
-import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
+import {StyleSheet} from 'react-native';
+
 import SignupCreateAccount from '../components/SignupFields/SignupCreateAccount';
 import SignupDob from '../components/SignupFields/SignupDob';
 import SignupName from '../components/SignupFields/SignupName';
 
 const Signup = props =>{
+    /* 
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+      states are used to change activities currently
+      currently not studied navigation, later we will shift to proper navigation.
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    */
     const [isNameSignup, setIsNameSignup]=useState(false);
     const [isDobSignup, setIsDobSignup]=useState(false);
     let signup;
