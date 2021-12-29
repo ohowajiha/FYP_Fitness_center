@@ -1,13 +1,8 @@
 /* 
     This component have input fields and buttons requested by different signup pages    
 */
-
-
 import React, {useState} from 'react';
 import {View, Text, TextInput, Image, StyleSheet, TouchableOpacity, Platform} from 'react-native';
-
-// for date inputs in react native
-import DateTimePicker from '@react-native-community/datetimepicker';
 
 // colors and strings imprt
 import Colors from '../../colors/Colors';
@@ -16,43 +11,6 @@ import UrduStrings from '../../strings/UrduStrings';
 
 //main
 const SignupScreenBody = props =>{
-    
-    ///////////////////////////////////////////
-    // states and functions for date and age //
-
-    const [date, setDate] = useState(new Date());
-    const [show, setShow] = useState(false);
-    const [firstClicked, setFirstClicked] = useState(false); // to display nothing in date and age textView firstTime
-    
-    const onChange = (event, selectedDate) => {
-        const newSelectedDate= selectedDate || date;
-        setDate(newSelectedDate);
-        if(Platform.OS==='android'){
-            setShow(false); //hide the calendar view
-        }
-        if(!firstClicked){
-            setFirstClicked(true);
-        }
-    };
-    
-    const changeAge=()=>{
-        let age=0;
-        const today= new Date();
-        age= today.getFullYear() - date.getFullYear();
-        let monthChecker= today.getMonth() - date.getMonth();
-        if(monthChecker<0 || (monthChecker == 0 && today.getDate() < date.getDate())){
-            age--;
-        }
-        return age;
-    };
-
-    const monthNames = ["January", "February", "March", "April", "May", "June",
-       "July", "August", "September", "October", "November", "December"];
-        
-    const showDate=()=>{
-        return date.getDate() + " / " + monthNames[date.getMonth()] + " / "+ date.getFullYear();
-    }
-
 ///////////////////////////////////////////////////////////////////////////////////////
     //  1. Top Image container
 //////////////////////////////////////////////////////////////////////////////////////
@@ -83,34 +41,26 @@ const SignupScreenBody = props =>{
         </View>;
     }
 
-    else if(props.helloInputFields==2){     ///////////    b. date input calendar type
+    else if(props.inputType=="dateInput"){     ///////////    b. date input calendar type
         InputFieldsRowOne =
         <View style={{ marginTop: 20 }}>
             {/*display calendar icon*/}
-            <TouchableOpacity style={{width:60, height:60, alignSelf:'center'}}   onPress={()=>setShow(true)}>
+            <TouchableOpacity style={{width:60, height:60, alignSelf:'center'}}   onPress={props.changeShow}>
                 <Image style={{width:60, height:60}} source={require('../../images/calendarIcon.png')}/>
             </TouchableOpacity>
 
             {/*display date entered throught calendar*/}
             <Text style={[styles.inputField, {width:null, maxWidth:null,marginTop:20, paddingBottom: 5,textAlign:'center'}]}>
-                    {firstClicked?showDate():props.setEnglish?Strings.dobLabelText:UrduStrings.dobLabelText}
+                    {props.rowOnePlaceHolderOne}
             </Text>
-
-            {/* calculating age with the help of current date and entered date*/}
-            <Text style={[{marginTop:5, fontWeight:'bold', textAlign:'center'}]}>
-                    {firstClicked?changeAge()+" Years old":""}
-            </Text>
-            
-            {/* show and hide calendar input */}
-            {show && (
-                <DateTimePicker
-                    testID="dateTimePicker"
-                    value={date}
-                    display="default"
-                    onChange={onChange}
-                />
-            )}
         </View>;
+
+        /* calculating age with the help of current date and entered date*/
+        InputFieldsRowTwo =
+        <Text style={[{marginTop:5, fontWeight:'bold', textAlign:'center'}]}>
+            {props.rowTwoPlaceHolderOne}
+        </Text>;
+            
     }
 
 ///////////////////////////////////////////////////////////////////////////////////////
