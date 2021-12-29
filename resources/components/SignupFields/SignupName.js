@@ -19,10 +19,15 @@ const SignupName = props =>{
             <SignupScreenBody 
                 shiftNextSignup={props.shiftDobSignup} 
                 shiftBackScreen={props.shiftBackScreen}
-                helloInputFields="1" 
+                inputType="inputFiels"
+                rowOnePlaceHolderOne={props.setEnglish?Strings.firstNameLabel:UrduStrings.firstNameLabel}
+                rowOnePlaceHolderTwo={props.setEnglish?Strings.lastNameLabel:UrduStrings.lastNameLabel}
+                //rowTwoPlaceHolderOne={pass string}
                 setEnglish={props.setEnglish}
                 headingText={props.setEnglish ? Strings.nameHeadingText : UrduStrings.nameHeadingText}
                 captionText={props.setEnglish ? Strings.nameCaptionText : UrduStrings.nameCaptionText}
+                //headingTwoText={pass string}
+                //captionTwoText={pass string}
                 />
         </>
     );

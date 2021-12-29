@@ -19,11 +19,11 @@ const SignupCreateAccount = props =>{
             <SignupScreenBody 
                 shiftNextSignup={props.shiftNameSignup} 
                 shiftBackScreen={props.shiftBackScreen}
-                helloImage="1"
-                helloSecondButton="1"
                 setEnglish={props.setEnglish}
+                topImageLocation='../../images/signupSlogan.png'
                 headingText={props.setEnglish ? Strings.signupQuote : UrduStrings.signupQuote}
                 captionText={props.setEnglish ? Strings.flowText : UrduStrings.flowText}
+                bottomButtonText={props.setEnglish ? Strings.loginText : UrduStrings.loginText}
                 />
         </>
     );

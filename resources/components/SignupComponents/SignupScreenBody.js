@@ -16,14 +16,14 @@ import UrduStrings from '../../strings/UrduStrings';
 
 //main
 const SignupScreenBody = props =>{
-    // for date time picker
-///////////////////////////////////////////////////////////////////////////////////////
-    // states and functions for date and age
-//////////////////////////////////////////////////////////////////////////////////////
+    
+    ///////////////////////////////////////////
+    // states and functions for date and age //
+
     const [date, setDate] = useState(new Date());
     const [show, setShow] = useState(false);
     const [firstClicked, setFirstClicked] = useState(false); // to display nothing in date and age textView firstTime
-    let age=0;
+    
     const onChange = (event, selectedDate) => {
         const newSelectedDate= selectedDate || date;
         setDate(newSelectedDate);
@@ -33,52 +33,58 @@ const SignupScreenBody = props =>{
         if(!firstClicked){
             setFirstClicked(true);
         }
-       };
+    };
     
-       const changeAge=()=>{
-            const today= new Date();
-            age= today.getFullYear() - date.getFullYear();
-            let monthChecker= today.getMonth() - date.getMonth();
-            if(monthChecker<0 || (monthChecker == 0 && today.getDate() < date.getDate())){
-                age--;
-            }
-            return age;
-       };
+    const changeAge=()=>{
+        let age=0;
+        const today= new Date();
+        age= today.getFullYear() - date.getFullYear();
+        let monthChecker= today.getMonth() - date.getMonth();
+        if(monthChecker<0 || (monthChecker == 0 && today.getDate() < date.getDate())){
+            age--;
+        }
+        return age;
+    };
 
     const monthNames = ["January", "February", "March", "April", "May", "June",
-       "July", "August", "September", "October", "November", "December"
-     ];
+       "July", "August", "September", "October", "November", "December"];
         
     const showDate=()=>{
         return date.getDate() + " / " + monthNames[date.getMonth()] + " / "+ date.getFullYear();
     }
 
 ///////////////////////////////////////////////////////////////////////////////////////
-    //  1.
-    //  Image for create account activity
+    //  1. Top Image container
 //////////////////////////////////////////////////////////////////////////////////////
-    let ImageContainer=<></>;
-    if(props.helloImage == 1){
-        ImageContainer =
+    let topImageContainer=<></>;
+        topImageContainer = props.topImageLocation && (
         <View style={styles.itemsContainer} >
             <Image source={require('../../images/signupSlogan.png')} style={styles.showImage} />
+        </View>);
+
+///////////////////////////////////////////////////////////////////////////////////////
+    //  2. Input fiels for activity
+//////////////////////////////////////////////////////////////////////////////////////
+    let InputFieldsRowOne=<></>;
+    let InputFieldsRowTwo=<></>;
+
+    if(props.inputType=="inputFiels"){    //////  a. text inputs.
+        InputFieldsRowOne =
+        <View style={{ marginTop: 20, flexDirection:props.setEnglish ? 'row': 'row-reverse', alignItems: 'center', justifyContent:'space-between' }}>
+            <TextInput placeholder={props.rowOnePlaceHolderOne} style={styles.inputField}/>
+            { props.rowOnePlaceHolderTwo && (<TextInput placeholder={props.rowOnePlaceHolderTwo} style={styles.inputField}/>)}
+        </View>;
+
+        InputFieldsRowTwo=
+        (props.rowTwoPlaceHolderOne || props.rowTwoPlaceHolderTwo)&&
+        <View style={{ marginTop: 20, flexDirection:props.setEnglish ? 'row': 'row-reverse', alignItems: 'center', justifyContent:'space-between' }}>
+            <TextInput placeholder={props.rowTwoPlaceHolderOne} style={styles.inputField}/>
+            { props.rowTwoPlaceHolderTwo && (<TextInput placeholder={props.rowTwoPlaceHolderTwo} style={styles.inputField}/>)}
         </View>;
     }
 
-///////////////////////////////////////////////////////////////////////////////////////
-    //  2.
-    //  Input fiels for activity
-//////////////////////////////////////////////////////////////////////////////////////
-    let InputFields=<></>;
-    if(props.helloInputFields==1){    //////  a. name inputs
-        InputFields =
-        <View style={{ marginTop: 20, flexDirection:props.setEnglish ? 'row': 'row-reverse', alignItems: 'center', justifyContent:'space-between' }}>
-            <TextInput placeholder={props.setEnglish?Strings.firstNameLabel:UrduStrings.firstNameLabel} style={styles.inputField}/>
-            <TextInput placeholder={props.setEnglish?Strings.lastNameLabel:UrduStrings.lastNameLabel} style={styles.inputField}/>
-        </View>;
-    }
     else if(props.helloInputFields==2){     ///////////    b. date input calendar type
-        InputFields =
+        InputFieldsRowOne =
         <View style={{ marginTop: 20 }}>
             {/*display calendar icon*/}
             <TouchableOpacity style={{width:60, height:60, alignSelf:'center'}}   onPress={()=>setShow(true)}>
@@ -112,38 +118,49 @@ const SignupScreenBody = props =>{
     //  second button at bottom in some activities
 //////////////////////////////////////////////////////////////////////////////////////
     let SecondButton=<></>;
-    if(props.helloSecondButton==1){
-        SecondButton =
-        <View style={{ alignItems: 'center' }}>
+        SecondButton = props.bottomButtonText && 
+        (<View style={{ alignItems: 'center' }}>
             <TouchableOpacity style={styles.button2} onPress={props.shiftBackScreen}>
-                <Text style={styles.btnText2}>{props.setEnglish ? Strings.loginText : UrduStrings.loginText}</Text>
+                <Text style={styles.btnText2}>{props.bottomButtonText}</Text>
             </TouchableOpacity>
-        </View>;
-    }
+        </View>)
     
 ////////////////////////////////////////////////////////////////////////////////////////////////////
     return(
         <>
         <View style={styles.container}>
-            {ImageContainer}
+            {topImageContainer}
 
             {/* /////////////////////////////////////////////
-                        Heading for activity
-                ///////////////////////////////////////////// */}
+                    Heading for activity  */}
             <View style={styles.itemsContainer} >
                 <Text style={styles.headingText}>{props.headingText}</Text>
             </View>
             
             {/* /////////////////////////////////////////////
-                        caption for Heading for activity
-                ///////////////////////////////////////////// */}
+                    caption for Heading for activity  */}
             <Text style={{ marginTop: 10, textAlign: 'center' }}>
                 {props.captionText}
             </Text>
             
             {/* Have to add InputFields  */}
-            {InputFields}
+            {InputFieldsRowOne}
             
+            {/* /////////////////////////////////////////////
+                    Second Heading for activity  */}
+            { props.HeadingTwo && (<View style={styles.itemsContainer} >
+                <Text style={styles.headingText}>{props.headingTwoText}</Text>
+            </View> )}
+            
+            {/* /////////////////////////////////////////////
+                    caption for Second Heading for activity  */}
+            { props.CaptionTwo && (<Text style={{ marginTop: 10, textAlign: 'center' }}>
+                {props.captionTwoText}
+            </Text> )}
+            
+            {/* Have to add InputFields  */}
+            {InputFieldsRowTwo}
+
             <TouchableOpacity style={styles.button1} onPress={props.shiftNextSignup}>
                     <Text style={styles.btnText1}>{props.setEnglish ? Strings.nextText : UrduStrings.nextText}</Text>
             </TouchableOpacity>
