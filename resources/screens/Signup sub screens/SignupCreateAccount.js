@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View, Image, TouchableOpacity, Text} from 'react-native';
 
 import Colors from '../../colors/Colors';
 import Strings from '../../strings/Strings';
 import ActionBarWithBack from '../../components/ActionBarWithBack';
 import HeadingAndCaption from '../../components/HeadingAndCaption';
+import {Picker} from '@react-native-picker/picker';
 
 
 const SignupCreateAccount = props =>{
+    const [selectedValue, setSelectedValue] = useState("2");
     return(
         <>
             <ActionBarWithBack 
@@ -27,8 +29,20 @@ const SignupCreateAccount = props =>{
                     captionText={Strings.flowText}
                 />
 
+                <Text style={{fontWeight:'bold', marginTop:10}}>{Strings.chooseUserCaption}</Text>
+                {/* picker for user type */}
+                <Picker
+                    selectedValue={selectedValue}
+                    style={{ height: 50, width: 130 }}
+                    onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                >
+                    <Picker.Item label="User" value='2'/>  
+                    <Picker.Item label="Coach" value='3'/>
+                    {/* value is user type in database   */}
+                </Picker>
+
                 {/* next button */}
-                <TouchableOpacity style={styles.nextButton} onPress={props.shiftNameSignup}>
+                <TouchableOpacity style={styles.nextButton} onPress={props.shiftNextScreen}>
                         <Text style={styles.nextButtonText}>
                             {Strings.nextText}
                         </Text>

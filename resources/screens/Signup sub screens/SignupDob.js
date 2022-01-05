@@ -83,7 +83,7 @@ const SignupDob = props =>{
                 </View>
 
                 {/* next button */}
-                <TouchableOpacity style={styles.nextButton} onPress={props.shiftDobSignup}>
+                <TouchableOpacity style={styles.nextButton} onPress={props.shiftNextScreen}>
                         <Text style={styles.nextButtonText}>
                             {Strings.nextText}
                         </Text>
