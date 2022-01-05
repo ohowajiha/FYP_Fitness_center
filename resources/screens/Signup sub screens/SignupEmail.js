@@ -12,24 +12,20 @@ const SignupName = props =>{
         <>
             <ActionBarWithBack 
                 shiftBackScreen={props.shiftBackScreen} 
-                title={Strings.nameLabelText}
+                title={Strings.mailLabelText}
             />
 
             <View style={styles.container}>
                 {/* heaging and caption from component */}
                 <HeadingAndCaption
-                    headingText={Strings.nameHeadingText}
-                    captionText={Strings.nameCaptionText}
+                    headingText={Strings.mailHeadingText}
+                    captionText={Strings.mailCaptionText}
                 />
 
                 {/* first name and last name input */}
                 <View style={styles.inputFieldsContainer}>
                     <TextInput 
-                        placeholder={Strings.firstNameLabel} 
-                        style={styles.inputField}
-                    />
-                    <TextInput 
-                        placeholder={Strings.lastNameLabel}
+                        placeholder={Strings.mailLabelText} 
                         style={styles.inputField}
                     />
                 </View>
@@ -61,8 +57,8 @@ const styles= StyleSheet.create({
         borderBottomColor: Colors.primary,
         borderBottomWidth: 2,
         fontSize: 18,
-        width: '50%',
-        maxWidth: '50%',
+        width: '80%',
+        maxWidth: '80%',
         marginHorizontal:5
     },
     nextButton: {

@@ -18,9 +18,10 @@ export default{
 
 
     //signup Avtivity
-    signupLabel:"Create Account",
+    signupLabel:"Choose User",
     signupQuote: "Welcome to \"Fitness Center\"",
-    flowText: "We will guide you step by step, throughout the account creating process.",
+    flowText: "Follow easy steps to create your account.",
+    chooseUserCaption: "Choose the user type",
     nextText: "Next",
     loginText: "Already have an account?",
 
@@ -30,6 +31,15 @@ export default{
     nameCaptionText:"Enter your name",
     firstNameLabel: "First Name",
     lastNameLabel: "Last Name",
+
+    mailLabelText: "Email",
+    mailHeadingText:"Enter your email",
+    mailCaptionText:"We wil notify you about updates through email.",
+    
+    passLabelText: "Password",
+    passHeadingText:"create password",
+    passCaptionText:"Protect your account by making strong password.",
+    cPassLabelText: "Confirm Password",
 
     dobLabelText: "Birthday",
     dobHeadingText: "What's your birthday",
