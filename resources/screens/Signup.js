@@ -1,19 +1,16 @@
 import React, {useState} from 'react';
 import {StyleSheet} from 'react-native';
 
-import SignupCreateAccount from '../components/SignupFields/SignupCreateAccount';
-import SignupDob from '../components/SignupFields/SignupDob';
-import SignupName from '../components/SignupFields/SignupName';
+import SignupCreateAccount from './Signup sub screens/SignupCreateAccount';
+import SignupDob from './Signup sub screens/SignupDob';
+import SignupName from './Signup sub screens/SignupName';
 
 const Signup = props =>{
-    /* 
-    //////////////////////////////////////////////////////////////////////////////////////////////////
-      states are used to change activities currently
-      currently not studied navigation, later we will shift to proper navigation.
-    //////////////////////////////////////////////////////////////////////////////////////////////////
-    */
+    // changing activities through states
     const [isNameSignup, setIsNameSignup]=useState(false);
     const [isDobSignup, setIsDobSignup]=useState(false);
+    
+    // variable to choose what to display
     let signup;
 
     const setNameSignup=()=>{
@@ -35,26 +32,25 @@ const Signup = props =>{
     }
 
     if(isDobSignup){
-        signup=<SignupDob 
-            shiftDobSignup={()=>{}} 
-            setEnglish={props.setEnglish} 
-            shiftBackScreen={backFromDob}
-            />;
+        signup= <SignupDob 
+                    shiftDobSignup={()=>{}} 
+                    shiftBackScreen={backFromDob}
+                />;
     }
     else if(isNameSignup)
-        signup=<SignupName 
-            shiftDobSignup={setDobSignup} 
-            setEnglish={props.setEnglish} 
-            shiftBackScreen={backFromName}
-            />;
+        signup= <SignupName 
+                    shiftDobSignup={setDobSignup} 
+                    shiftBackScreen={backFromName}
+                />;
     else
-        signup=<SignupCreateAccount 
-            shiftNameSignup={setNameSignup} 
-            setEnglish={props.setEnglish} 
-            shiftBackScreen={props.shiftLoginScreen}/>;
+        signup= <SignupCreateAccount 
+                    shiftNameSignup={setNameSignup} 
+                    shiftBackScreen={props.shiftLoginScreen}
+                />;
+
     return(
         <>
-        {signup}
+            {signup}
         </>
     );
 };

@@ -1,67 +1,76 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Button, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, Button, TextInput, TouchableOpacity } from 'react-native';
 
-import LoginScreenHeader from '../components/LoginComponents/LoginScreenHeader';
 import Colors from '../colors/Colors';
 import Strings from '../strings/Strings';
-import UrduStrings from '../strings/UrduStrings';
 
 const Login = props => {
-    const [isEnglish, setIsEnglish]=useState(props.setEnglish);
     return (
         <View style={styles.container}>
-            <LoginScreenHeader />
+            
+            {/* banner image */}
+            <View style={styles.bannerImageContainer}>
+                <Image style={styles.bannerImage} source={require('../images/loginHeader.png')}/>
+            </View>
 
-            {/* 
-            ////////////////////////////////////////////////////////////////////
-                    Language buttons: English, Urdu
-            ////////////////////////////////////////////////////////////////////
-            */}
+            {/* language selector */}
             <View style={styles.languageSelector}>
-            <TouchableOpacity style={styles.languageButton} disabled={isEnglish} onPress={()=>setIsEnglish(true)} >
-                    <Text style={[styles.btnLnText, isEnglish?{fontWeight:'bold'}:{}]}> {isEnglish ? Strings.englishLanguage : UrduStrings.englishLanguage} </Text>
-            </TouchableOpacity>
+                {/* english */}
+                <TouchableOpacity style={styles.languageButton} >
+                    <Text style={styles.btnLnText}> 
+                        {Strings.englishLanguage} 
+                    </Text>
+                </TouchableOpacity>
 
-            <TouchableOpacity style={styles.languageButton} disabled={!isEnglish} onPress={()=>setIsEnglish(false)} >
-                <Text style={[styles.btnLnText, isEnglish?{}:{fontWeight:'bold'}]}> {isEnglish ? Strings.urduLanguage : UrduStrings.urduLanguage} </Text>
-            </TouchableOpacity>
+                {/* urdu */}
+                <TouchableOpacity style={styles.languageButton} >
+                    <Text style={styles.btnLnText}> 
+                        {Strings.urduLanguage} 
+                    </Text>
+                </TouchableOpacity>
             </View>
 
-            {/* 
-            ////////////////////////////////////////////////////////////////////
-                    Email, password, login button, forgor password button
-            ////////////////////////////////////////////////////////////////////
-            */}
+            {/* input fields container */}
             <View style={styles.fieldsContainer}>
-                <TextInput style={styles.inputField} placeholder={isEnglish ? Strings.emailPlaceholder : UrduStrings.emailPlaceholder} />
-                <TextInput style={styles.inputField} placeholder={isEnglish ? Strings.passwordPlaceholder : UrduStrings.passwordPlaceholder} />
+                {/* email input */}
+                <TextInput 
+                    style={styles.inputField} 
+                    placeholder={Strings.emailPlaceholder} 
+                />
+
+                {/* password input */}
+                <TextInput 
+                    style={styles.inputField} 
+                    placeholder={Strings.passwordPlaceholder} 
+                />
                 
-                <TouchableOpacity style={styles.button1} >
-                    <Text style={styles.btnText1}> {isEnglish ? Strings.loginButtonText : UrduStrings.loginButtonText} </Text>
+                {/* login button */}
+                <TouchableOpacity style={styles.loginButton} >
+                    <Text style={styles.loginButtonText}> 
+                        {Strings.loginButtonText} 
+                    </Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.button2} >
-                    <Text style={styles.btnText2}> {isEnglish ? Strings.forgotPasswordText : UrduStrings.forgotPasswordText} </Text>
+                {/* forgot password */}
+                <TouchableOpacity style={styles.forgotPwdButton} >
+                    <Text style={styles.forgotPwdButtonText}> 
+                        {Strings.forgotPasswordText} 
+                    </Text>
                 </TouchableOpacity>
             </View>
 
-            {/* 
-            ////////////////////////////////////////////////////////////////////
-                    Separator bar
-            ////////////////////////////////////////////////////////////////////
-            */}
+            {/* separator bar */}
             <Text style={styles.separator}>
-            ───────────── {isEnglish ? Strings.spliterText : UrduStrings.spliterText} ─────────────
+                ───────────── {Strings.spliterText} ─────────────
             </Text>
 
-            {/* 
-            ////////////////////////////////////////////////////////////////////
-                    Signup button
-            ////////////////////////////////////////////////////////////////////
-            */}
+            {/* signup button */}
             <View style={styles.signupButtons}>
                 <View style={{width:250}}>
-                    <Button onPress={()=>props.shiftSignupScreen(isEnglish)} title={isEnglish ? Strings.signupText : UrduStrings.signupText}/>
+                    <Button 
+                        onPress={props.shiftSignupScreen} 
+                        title={Strings.signupText}
+                    />
                 </View>
             </View>
         </View>
@@ -74,23 +83,32 @@ const styles = StyleSheet.create({
         width: '100%',
         flex: 1
     },
+    bannerImageContainer:{
+        width: '100%',
+        height: '30%'
+    },
+    bannerImage:{
+        width: '100%',
+        height: '100%',
+        backgroundColor: Colors.primary
+    },
     languageSelector: {
         flexDirection:'row',
         justifyContent: 'center',
         alignItems: 'center',
         marginTop:5
     },
-    fieldsContainer: {
-        paddingHorizontal: '10%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 30
-    },
     languageButton:{
         marginHorizontal:3,
     },
     btnLnText:{
         fontSize:14
+    },
+    fieldsContainer: {
+        paddingHorizontal: '10%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 30
     },
     inputField: {
         borderBottomColor: Colors.primary,
@@ -99,7 +117,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         width: 300
     },
-    button1: {
+    loginButton: {
         width: 300,
         height: 38,
         marginTop: 30,
@@ -107,19 +125,19 @@ const styles = StyleSheet.create({
         padding: 6,
         borderRadius: 5,
     },
-    btnText1: {
+    loginButtonText: {
         color: "white",
         fontSize: 16,
         justifyContent: "center",
         textAlign: "center",
     },
-    button2: {
+    forgotPwdButton: {
         width: 300,
         marginTop: 5,
         backgroundColor: Colors.noBackground,
         padding: 6
     },
-    btnText2: {
+    forgotPwdButtonText: {
         color: Colors.primary,
         fontSize: 16,
         justifyContent: "center",
@@ -129,11 +147,9 @@ const styles = StyleSheet.create({
         marginVertical: 30,  
         textAlign: 'center' 
     },
-
     signupButtons:{
         alignItems:'center'
     }
-
 });
 
 export default Login;

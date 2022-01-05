@@ -34,4 +34,5 @@ export default{
     dobLabelText: "Birthday",
     dobHeadingText: "What's your birthday",
     dobCaptionText: "Click on Calendar and choose your date of birth",
+    ageLabelText: " Years old"
 };
